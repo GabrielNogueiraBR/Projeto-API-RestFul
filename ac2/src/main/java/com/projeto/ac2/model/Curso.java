@@ -10,7 +10,6 @@ public class Curso {
     private String nomeProfessorCoordenador;
     private LocalTime cargaHoraria;
     private int alunosMatriculados;
-    private Escola escola;
 
 
     //https://medium.com/@racc.costa/data-e-hora-no-java-8-e-no-java-9-5f1e3fd8d560
@@ -26,7 +25,6 @@ public class Curso {
         this.nomeProfessorCoordenador = nomeProfessorCoordenador;
         this.cargaHoraria = cargaHoraria;
         this.alunosMatriculados = alunosMatriculados;
-        this.escola = escola;
     }
     
 
@@ -78,12 +76,10 @@ public class Curso {
         this.alunosMatriculados = alunosMatriculados;
     }
 
-    public Escola getEscola() {
-        return escola;
-    }
-
-    public void setEscola(Escola escola) {
-        this.escola = escola;
-    }
-    
+    @Override
+    public String toString() {
+        return "Curso [alunosMatriculados=" + alunosMatriculados + ", cargaHoraria=" + cargaHoraria + ", descricao="
+                + descricao + ", idCurso=" + idCurso + ", nomeCurso=" + nomeCurso
+                + ", nomeProfessorCoordenador=" + nomeProfessorCoordenador + "]";
+    }    
 }
