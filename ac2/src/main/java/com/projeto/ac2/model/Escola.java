@@ -89,6 +89,22 @@ public class Escola {
                 + idEscola + "\nLista de Cursos = " + listaCursos + "\n\n";
     }
 
+    public int getIdEscola() {
+        return idEscola;
+    }
+
+    public void setIdEscola(int idEscola) {
+        this.idEscola = idEscola;
+    }
+
+    public List<Curso> getListaCursos() {
+        return listaCursos;
+    }
+
+    public void setListaCursos(List<Curso> listaCursos) {
+        this.listaCursos = listaCursos;
+    }
+
     
     
 }

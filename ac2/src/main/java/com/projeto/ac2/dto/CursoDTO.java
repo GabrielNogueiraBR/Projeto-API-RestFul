@@ -6,7 +6,7 @@ public class CursoDTO {
     private String nomeCurso;
     private String descricao;
     private String nomeProfessorCoordenador;
-    private LocalTime cargaHoraria;
+    private LocalTime horarioAula;
     private int alunosMatriculados;
 
     public String getNomeCurso() {
@@ -33,20 +33,20 @@ public class CursoDTO {
         this.nomeProfessorCoordenador = nomeProfessorCoordenador;
     }
 
-    public LocalTime getCargaHoraria() {
-        return cargaHoraria;
-    }
-
-    public void setCargaHoraria(LocalTime cargaHoraria) {
-        this.cargaHoraria = cargaHoraria;
-    }
-
     public int getAlunosMatriculados() {
         return alunosMatriculados;
     }
 
     public void setAlunosMatriculados(int alunosMatriculados) {
         this.alunosMatriculados = alunosMatriculados;
+    }
+
+    public LocalTime getHorarioAula() {
+        return horarioAula;
+    }
+
+    public void setHorarioAula(LocalTime horarioAula) {
+        this.horarioAula = horarioAula;
     }
 
     
