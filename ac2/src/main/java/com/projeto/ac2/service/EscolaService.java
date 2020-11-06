@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.projeto.ac2.dto.EscolaDTO;
+import com.projeto.ac2.model.Curso;
 import com.projeto.ac2.model.Escola;
 import com.projeto.ac2.repository.EscolaRepository;
 
@@ -50,12 +51,21 @@ public class EscolaService {
         if(repository.remove(getEscolaByID(id)))
             return true;
         
-        return false;
+        //caso a escola possua cursos cadastrados, sera exibida uma mensagem de conflito, indicando que a requisicao do client conflita com as regras de negocio do servidor.
+        throw new ResponseStatusException(HttpStatus.CONFLICT,"A escola possui cursos cadastrados e nao pode ser excluida.");
     }
 
     public Escola update(Escola escola){
-        Escola updateEscola = getEscolaByID(escola.getIdEscola());
+        //apenas para verificar no repositorio se existe uma escola com esse id, caso contrario, lanca o 404
+        getEscolaByID(escola.getIdEscola());
 
-        return repository.update(updateEscola);
+        return repository.update(escola);
     }
+
+	public List<Curso> getAllCursosByIdEscola(int id) {
+        //procura pela escola com o id indicado, caso nao encontre, o erro 404 e retornado.
+        Escola escola = getEscolaByID(id);
+        
+        return escola.getListaCursos();
+	}
 }
