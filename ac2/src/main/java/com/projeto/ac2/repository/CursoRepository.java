@@ -40,11 +40,8 @@ public class CursoRepository {
 
         Curso updateCurso = getCursoByID(curso.getIdCurso()).get();
         
+        //de acordo com as especificacoes do projeto, apenas um atributo do curso pode ser alterado
         if(updateCurso != null){
-            updateCurso.setNomeCurso(curso.getNomeCurso());
-            updateCurso.setDescricao(curso.getDescricao());
-            updateCurso.setNomeProfessorCoordenador(curso.getNomeProfessorCoordenador());
-            updateCurso.setHorarioAula(curso.getHorarioAula());
             updateCurso.setAlunosMatriculados(curso.getAlunosMatriculados());
         }
 
