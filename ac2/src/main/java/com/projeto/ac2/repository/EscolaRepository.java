@@ -44,11 +44,9 @@ public class EscolaRepository {
     public Escola update(Escola escola){
         Escola updateEscola = getEscolaByID(escola.getIdEscola()).get();
 
+        //de acordo com as especificacoes do projeto, apenas dois atributos podem ser alterados
         if(updateEscola != null){
             updateEscola.setNomeEscola(escola.getNomeEscola());
-            updateEscola.setRua(escola.getRua());
-            updateEscola.setCidade(escola.getCidade());
-            updateEscola.setEstado(escola.getEstado());
             updateEscola.setDataFundacao(escola.getDataFundacao());
         }
         
