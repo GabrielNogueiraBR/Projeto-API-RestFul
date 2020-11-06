@@ -49,9 +49,30 @@ public class CursoService {
 
         //Adicionando a escola no objeto curso
         curso.setEscola(escola);
+
+        //Salvando o curso e recebendo o id do curso
+        curso = repository.save(curso);
+
         //Adicionando o curso na lista de cursos da escola
         escola.addCurso(curso);
 
-        return repository.save(curso);
+        return curso;
     }
+
+	public void deleteCursoById(int id) {
+        
+        //caso nao encontre o curso sera retornado o 404
+        Curso curso = getCursoByID(id);
+
+        repository.remove(curso);
+    
+    }
+
+	public Curso update(Curso curso) {
+        
+        //apenas para validar se existe o curso, caso contrario, lanca o 404
+        getCursoByID(curso.getIdCurso());
+        
+        return repository.update(curso);
+	}
 }
