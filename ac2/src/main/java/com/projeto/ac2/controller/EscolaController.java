@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.projeto.ac2.dto.CursoDTO;
 import com.projeto.ac2.dto.EscolaDTO;
+import com.projeto.ac2.model.Curso;
 import com.projeto.ac2.model.Escola;
 import com.projeto.ac2.service.CursoService;
 import com.projeto.ac2.service.EscolaService;
@@ -80,13 +82,45 @@ public class EscolaController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEscolaByID(@PathVariable int id){
         escolaService.remove(id);
-
         return ResponseEntity.noContent().build();
     }
 
-    // @PostMapping("/{id}/cursos")
-    // public ResponseEntity<Void> saveCurso(@PathVariable int id, @RequestBody CursoDTO cursoDTO, HttpServletRequest request, UriComponentsBuilder builder){
-    //     Curso curso = cursoService.save(id,)
-    // }
-    
+    /**
+     * Metodo utilizado para retornar todos os cursos de uma escola atraves do id da escola.
+     * 
+     * @param id identificador da escola.
+     * @return Lista de cursos associados a escola.
+     */
+    @GetMapping("/{id}/cursos")
+    public List<Curso> getAllCursosByIdEscola(@PathVariable int id){
+        return escolaService.getAllCursosByIdEscola(id);
+    }
+
+    /**
+     * Funcao criada para salvar um curso a partir de um {@code id} de uma escola, a partir do metodo POST. 
+     * @author Gabriel Nogueira
+     * @param id
+     * @param cursoDTO
+     * @param request
+     * @param builder
+     * @return Em caso de sucesso o retorno e um {@code CREATED}, caso contrario, teremos um retorno {@code NOT FOUND(404)}.
+     */
+    @PostMapping("/{id}/cursos")
+    public ResponseEntity<Void> saveCurso(@PathVariable int id, @RequestBody CursoDTO cursoDTO, HttpServletRequest request, UriComponentsBuilder builder){
+        
+        //criando um curso a partir do dto recebido
+        Curso curso = cursoService.fromDTO(cursoDTO);
+
+        //salvando o curso de acordo com o id da escola
+        curso = cursoService.save(id, curso);
+
+        //compotentes da URI
+        UriComponents uriComponents = builder.path(request.getRequestURI() + "/" + curso.getIdCurso()).build();
+
+        //criando a URI
+        URI uri = uriComponents.toUri();
+
+        //retorno do metodo passando a uri do objeto criado
+        return ResponseEntity.created(uri).build();
+    }  
 }
