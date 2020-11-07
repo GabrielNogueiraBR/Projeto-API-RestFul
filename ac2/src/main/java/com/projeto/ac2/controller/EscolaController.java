@@ -55,6 +55,9 @@ public class EscolaController {
 
         Escola escola = escolaService.fromDTO(escolaDTO);
         
+        //Salvando a escola
+        escola = escolaService.save(escola);
+
         //Componentes da URI
         UriComponents components = builder.path(request.getRequestURI() + "/" + escola.getIdEscola()).build();
 
@@ -83,7 +86,7 @@ public class EscolaController {
     public ResponseEntity<Void> deleteEscolaByID(@PathVariable int id){
         escolaService.remove(id);
         return ResponseEntity.noContent().build();
-    }
+    }   
 
     /**
      * Metodo utilizado para retornar todos os cursos de uma escola atraves do id da escola.

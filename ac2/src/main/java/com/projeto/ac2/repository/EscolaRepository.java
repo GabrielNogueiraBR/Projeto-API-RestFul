@@ -1,5 +1,6 @@
 package com.projeto.ac2.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class EscolaRepository {
     
-    private List<Escola> escolas;
-    private int nextCode = 0;
+    private List<Escola> escolas = new ArrayList<Escola>();
+    private int nextCode = 1;
 
     public List<Escola> getAllEscolas(){
         return escolas;
@@ -46,8 +47,8 @@ public class EscolaRepository {
 
         //de acordo com as especificacoes do projeto, apenas dois atributos podem ser alterados
         if(updateEscola != null){
-            updateEscola.setNomeEscola(escola.getNomeEscola());
-            updateEscola.setDataFundacao(escola.getDataFundacao());
+            updateEscola.setCidade(escola.getCidade());
+            updateEscola.setRua(escola.getRua());
         }
         
         return updateEscola;

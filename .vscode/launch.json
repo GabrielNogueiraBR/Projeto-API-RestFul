@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Ac2Application<ac2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.projeto.ac2.Ac2Application",
+            "projectName": "ac2",
+            "args": ""
+        }
+    ]
+}

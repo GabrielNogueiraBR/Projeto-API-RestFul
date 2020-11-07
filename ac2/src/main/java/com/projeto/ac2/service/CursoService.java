@@ -64,8 +64,14 @@ public class CursoService {
         //caso nao encontre o curso sera retornado o 404
         Curso curso = getCursoByID(id);
 
+        //obtendo a escola do curso
+        Escola escola = escolaService.getEscolaByID(curso.getEscola().getIdEscola());
+
+        //removendo o curso da escola
+        escola.getListaCursos().remove(curso);
+
+        //removendo o curso do repositorio
         repository.remove(curso);
-    
     }
 
 	public Curso update(Curso curso) {
