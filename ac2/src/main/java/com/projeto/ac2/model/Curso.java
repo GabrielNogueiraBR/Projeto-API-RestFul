@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 public class Curso {
     
     private int idCurso;
@@ -13,6 +14,9 @@ public class Curso {
     private LocalTime horarioAula;
     private int alunosMatriculados;
     
+    /**
+     * O @JsonIgnore foi utilizado seguindo as orientações do professor para não ocorrer um looping de informações no momento de ser exibidos todos os cursos.
+     */
     @JsonIgnore
     private Escola escola;
 

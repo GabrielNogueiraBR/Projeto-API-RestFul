@@ -3,8 +3,8 @@ package com.projeto.ac2.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.projeto.ac2.dto.CursoDTO;
 import com.projeto.ac2.dto.EscolaDTO;
-import com.projeto.ac2.model.Curso;
 import com.projeto.ac2.model.Escola;
 import com.projeto.ac2.repository.EscolaRepository;
 
@@ -18,6 +18,9 @@ public class EscolaService {
     
     @Autowired
     private EscolaRepository repository;
+
+    @Autowired
+    private CursoService cursoService;
     
     public Escola fromDTO(EscolaDTO dto){
         Escola escola = new Escola();
@@ -52,7 +55,7 @@ public class EscolaService {
             return true;
         
         //caso a escola possua cursos cadastrados, sera exibida uma mensagem de conflito, indicando que a requisicao do client conflita com as regras de negocio do servidor.
-        throw new ResponseStatusException(HttpStatus.CONFLICT,"A escola possui cursos cadastrados e nao pode ser excluida.");
+        throw new ResponseStatusException(HttpStatus.METHOD_NOT_ALLOWED,"A escola possui cursos cadastrados e nao pode ser excluida.");
     }
 
     public Escola update(Escola escola){
@@ -62,10 +65,10 @@ public class EscolaService {
         return repository.update(escola);
     }
 
-	public List<Curso> getAllCursosByIdEscola(int id) {
+	public List<CursoDTO> getAllCursosDTOByIdEscola(int id) {
         //procura pela escola com o id indicado, caso nao encontre, o erro 404 e retornado.
         Escola escola = getEscolaByID(id);
         
-        return escola.getListaCursos();
+        return cursoService.listCursoToDTO(escola.getListaCursos());
 	}
 }

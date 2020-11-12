@@ -95,8 +95,8 @@ public class EscolaController {
      * @return Lista de cursos associados a escola.
      */
     @GetMapping("/{id}/cursos")
-    public List<Curso> getAllCursosByIdEscola(@PathVariable int id){
-        return escolaService.getAllCursosByIdEscola(id);
+    public List<CursoDTO> getAllCursosByIdEscola(@PathVariable int id){
+        return escolaService.getAllCursosDTOByIdEscola(id);
     }
 
     /**

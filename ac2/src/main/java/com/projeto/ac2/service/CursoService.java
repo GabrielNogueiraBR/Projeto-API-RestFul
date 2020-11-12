@@ -1,5 +1,6 @@
 package com.projeto.ac2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,40 @@ public class CursoService {
         curso.setAlunosMatriculados(cursoDTO.getAlunosMatriculados());
 
         return curso;
+    }
+
+    /**
+     * Funcao para converter um Curso em CursoDTO
+     * @param curso objeto do tipo Curso que sera transformado em CursoDTO
+     * @return retorna um objeto do tipo CursoDTO
+     */
+    public CursoDTO toDTO(Curso curso){
+        
+        CursoDTO dto = new CursoDTO();
+        dto.setIdCurso(curso.getIdCurso());
+        dto.setNomeCurso(curso.getNomeCurso());
+        dto.setDescricao(curso.getDescricao());
+        dto.setNomeProfessorCoordenador(curso.getNomeProfessorCoordenador());
+        dto.setHorarioAula(curso.getHorarioAula());
+        dto.setAlunosMatriculados(curso.getAlunosMatriculados());
+
+        return dto;
+    }
+
+    /**
+     * Funcao que faz a conversao de uma lista de Curso para uma lista de CursoDTO
+     * @param cursos
+     * @return é uma lista de CursoDTO
+     */
+    public List<CursoDTO> listCursoToDTO(List<Curso> cursos){
+
+        List<CursoDTO> dtos = new ArrayList<CursoDTO>();
+        
+        for (Curso curso : cursos) {
+            dtos.add(toDTO(curso));
+        }
+
+        return dtos;
     }
 
     public List<Curso> getAllCursos(){
